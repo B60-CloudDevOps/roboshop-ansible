@@ -28,3 +28,34 @@ The `roboshop-ansible` repository is intended to serve as a centralized platform
 
 5. **Declarative Automation Using YAML Playbooks**
    Unlike Bash, where automation logic is written as imperative scripts, Ansible uses **Playbooks** written in YAML (Yet Another Markup Language). YAML-based automation is declarative, human-readable, easier to maintain, and better suited for large-scale infrastructure management.
+
+
+How to install ANSIBLE ?
+   ANSIBLE is a python based package. All the python based packages are installed using pip3.x
+
+   That means, we need to install pip and then using pip we will install ansible.
+
+   With "# dnf install ansible -y" you get ansible-core which is ansible-core 2.14 ( redhast version 7). If you want a latest version of redhat ansible, install it using "pypi"
+
+   PyPI (Python Package Index) is the official online repository and central marketplace for third-party software packages written in the Python programming language. It allows developers to easily find, share, and install pre-built code so they don't have to reinvent the wheel
+
+   From this reference: https://pypi.org/project/ansible/
+
+   Latest version of ansible needs minimum of python3.12,
+
+   Ensure you do a "dnf remove python -y" and install python3.12
+   # dnf install python3.12 -y
+   # pip3.11 install ansible -y 
+   ansible [core 2.15.13] = Redhat Ansible Verison 8
+
+How ansible knows the information of the servers you're dealing with ?
+   We need to source the IP or domain name of those servers in a file and that file is called as "Inventory"
+
+Ansible is all about modules and they are readily available and can be referred from the documentation.
+
+
+Ansible commands can be executed in 2 ways :
+   1) Using Ad-hoc based commands and with adhoc based commands you cannot run more than one instruction at a time.
+      "ansible -i 172.31.22.44,172.31.22.26, all -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ansible.builtin.ping"
+         ansible_user, ansible_password are the pre-defined commands.
+         
