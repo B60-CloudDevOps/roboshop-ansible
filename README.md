@@ -58,4 +58,5 @@ Ansible commands can be executed in 2 ways :
    1) Using Ad-hoc based commands and with adhoc based commands you cannot run more than one instruction at a time.
       "ansible -i 172.31.22.44,172.31.22.26, all -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ansible.builtin.ping"
          ansible_user, ansible_password are the pre-defined commands.
-         
+      "ansible -i inventory all -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ansible.builtin.ping"
+      what is all here ? all is the group that includes every entry in the inventory file
