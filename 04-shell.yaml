@@ -8,3 +8,7 @@
     - name: Printing the shell output
       ansible.builtin.debug:  
         msg: "{{ OUT }}"
+
+    - name: Printing defined output
+      ansible.builtin.debug:
+        msg: "{{ OUT.stdout }} and the exist code is {{ OUT.rc }}"
