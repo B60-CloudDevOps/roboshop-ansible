@@ -11,7 +11,7 @@
       ansible.builtin.debug:
         msg: "Name of the var is {{ URL }}" 
 
-    - name: Printing the variable in between the sentense
+    - name: Printing local variable
       vars:                                # Tasklelve variable, which is only valid for this task
         URL: task.google.com
       ansible.builtin.debug:
