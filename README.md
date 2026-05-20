@@ -254,3 +254,11 @@ What is a task ?
 
 How to run an ansible playbook ?
    "ansible-playbook -i inventory -e ansible_user=ec2-user -e ansible_password=DevOps321 01-playbook.yaml"
+
+Variables Types:
+   1) Play level variables
+   2) Task level variable
+   3) Command line variable 
+
+
+   task variable > play level variable
