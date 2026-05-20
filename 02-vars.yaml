@@ -6,3 +6,7 @@
     - name: Printing the variable
       ansible.builtin.debug:
         msg: "{{ URL }}"
+
+    - name: Printing the variable in between the sentense
+      ansible.builtin.debug:
+        msg: "Name of the var is {{ URL }}"
