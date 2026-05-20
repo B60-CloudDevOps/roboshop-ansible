@@ -3,4 +3,4 @@
   tasks: 
     - name: Printing the OS Dist
       ansible.builtin.debug:
-        msg: "OS Distro Is {{ ansible_distribution }}"
+        msg: "OS Distro Is {{ ansible_distribution }} & the verison is {{ ansible_distribution_version }}"
