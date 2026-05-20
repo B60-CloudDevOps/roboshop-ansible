@@ -5,4 +5,4 @@
   tasks: 
     - name: Printing the variable
       ansible.builtin.debug:
-        msg: {{ URL }}
+        msg: "{{ URL }}"
