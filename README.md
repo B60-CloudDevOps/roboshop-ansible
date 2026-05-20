@@ -275,3 +275,6 @@ How can I control ansible gathering the facts or not ?
 
 How do I know what all facts that ansible is gathering ?
  "ansible -i inventory prod -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ansible.builtin.gather_facts"
+
+By default, ansible collects the facts on the execution of playbooks. But, we can control by saying no & when we do that, it's ansible don't collectiosn the facts and when you print or access the facts inside that playbook, your playbook wll flag that.
+
