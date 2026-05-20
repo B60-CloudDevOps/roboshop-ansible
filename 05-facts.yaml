@@ -1,5 +1,6 @@
 - name: Demo on facts 
-  hosts: all               
+  hosts: all
+  gather_facts: no             # This disable the collection of ansible facts               
   tasks: 
     - name: Printing the OS Dist
       ansible.builtin.debug:
