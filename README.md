@@ -263,4 +263,15 @@ Variables Types:
       ( This is how we can supply a command line variable )
 
 
-   cli variable > task variable > play level variable
+   cli variable > task variable > play level variable 
+
+What is a fact in ansible ?
+   Fact is a property of the server which will be captured by the ansble playbook before the exeuction of the playbook.
+   If you have 100 servers, when you run a playbook ( with hosts as all in that inventory ), then ansible server is going to extract the facts across all the servers.
+
+   Sometimes facts are important for the task you're dong & few times you really don't need them!
+
+How can I control ansible gathering the facts or not ?
+
+How do I know what all facts that ansible is gathering ?
+ "ansible -i inventory prod -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ansible.builtin.gather_facts"
