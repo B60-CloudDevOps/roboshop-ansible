@@ -16,3 +16,10 @@
         URL: task.google.com
       ansible.builtin.debug:
         msg: "Name of the var is {{ URL }}"
+
+- name: Play 2 Demo On Vars - What will happen when you use a variable that's not defined and declared
+  hosts: all 
+  tasks: 
+    - name: Printing the variable
+      ansible.builtin.debug:
+        msg: "{{ URL }}"
