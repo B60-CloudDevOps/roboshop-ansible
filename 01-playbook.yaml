@@ -9,7 +9,6 @@
       ansible.builtin.debug:
         msg: We are learning ansible in task2 of play1
 
-
 - name: play 2
   hosts: all
   tasks:  

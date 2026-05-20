@@ -1,0 +1,8 @@
+- name: Demo on vars 
+  hosts: all 
+  vars:                                     # Playlevel variables, which can be inherited by default by all the tasks of the play
+    URL: play.google.com                 
+  tasks: 
+    - name: Printing the variable
+      ansible.builtin.debug:
+        msg: {{ URL }}
