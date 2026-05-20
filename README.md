@@ -226,55 +226,212 @@ Example capabilities:
 * Modules are the building blocks of Ansible automation.
 
 
-# To learn YAML ( Yet Another Markup Language ), we need need to know 4 important basics 
-   1) Dictionary     ( a key with a single value is referred as dictionary )
-      ```
-         name: Martin D'vloper
-         job: Developer
-      ```
-   2) List           ( a key with multiple values is referred as list )
-      ```
-         skills:
-            - lisp
-            - fortran
-            - erlang
-      ```
-   3) Map            ( a key with multiple key value pairs is referred as Map )
-   4) Each & every yaml file should end with .yml or .yaml
-   5) Unline bash, YAML is indendation specific ( Either you use one or two spaces across the board )
+# Executive Summary — YAML & Ansible Playbooks
 
-What is a playbook ?
-   Playbook is nothing but a list of plays.
+## Introduction to YAML
 
-What is a play ?
-   A play is a list of tasks that has to be executed.
+YAML (Yet Another Markup Language) is a human-readable data serialization language widely used in Ansible playbooks and configuration management.
 
-What is a task ?
-   Task is something we want to execute.
+YAML files typically use:
 
-How to run an ansible playbook ?
-   "ansible-playbook -i inventory -e ansible_user=ec2-user -e ansible_password=DevOps321 01-playbook.yaml"
+* `.yml`
+* `.yaml`
 
-Variables Types:
-   1) Play level variables
-   2) Task level variable
-   3) Command line variable 
-      ansible-playbook -i inventory -e ansible_user=ec2-user -e ansible_password=DevOps321 03-cliVar.yml -e URL=url.google.com
-      ( This is how we can supply a command line variable )
+extensions.
 
+Unlike Bash scripting, YAML is **indentation-sensitive**, meaning spacing must remain consistent throughout the file.
 
-   cli variable > task variable > play level variable 
+---
 
-What is a fact in ansible ?
-   Fact is a property of the server which will be captured by the ansble playbook before the exeuction of the playbook.
-   If you have 100 servers, when you run a playbook ( with hosts as all in that inventory ), then ansible server is going to extract the facts across all the servers.
+# Core YAML Concepts
 
-   Sometimes facts are important for the task you're dong & few times you really don't need them!
+## 1) Dictionary
 
-How can I control ansible gathering the facts or not ?
+A single key associated with a single value.
 
-How do I know what all facts that ansible is gathering ?
- "ansible -i inventory prod -e ansible_user=ec2-user -e ansible_password=DevOps321 -m ansible.builtin.gather_facts"
+```yaml id="3a5xwr"
+name: Martin D'vloper
+job: Developer
+```
 
-By default, ansible collects the facts on the execution of playbooks. But, we can control by saying no & when we do that, it's ansible don't collectiosn the facts and when you print or access the facts inside that playbook, your playbook wll flag that.
+---
 
+## 2) List
+
+A key associated with multiple values.
+
+```yaml id="mxyjhn"
+skills:
+  - lisp
+  - fortran
+  - erlang
+```
+
+---
+
+## 3) Map
+
+A structure containing multiple key-value pairs grouped together.
+
+```yaml id="p6j3u7"
+employee:
+  name: Martin
+  role: Developer
+  experience: 5
+```
+
+---
+
+# Understanding Ansible Playbooks
+
+## What is a Playbook?
+
+A playbook is a YAML file containing a **list of plays**.
+
+---
+
+## What is a Play?
+
+A play is a collection of **tasks** executed against a set of servers.
+
+---
+
+## What is a Task?
+
+A task represents a single operation that Ansible executes, such as:
+
+* Installing packages
+* Starting services
+* Creating files
+* Deploying applications
+
+---
+
+# Running an Ansible Playbook
+
+Example command:
+
+```bash id="9mx0oz"
+ansible-playbook -i inventory \
+-e ansible_user=ec2-user \
+-e ansible_password=DevOps321 \
+01-playbook.yaml
+```
+
+### Key Parameters
+
+| Parameter          | Purpose                  |
+| ------------------ | ------------------------ |
+| `-i inventory`     | Specifies inventory file |
+| `-e`               | Passes extra variables   |
+| `ansible-playbook` | Executes playbook files  |
+
+---
+
+# Variable Types in Ansible
+
+Ansible supports multiple variable scopes.
+
+## 1) Play-Level Variables
+
+Variables defined at the play scope.
+
+## 2) Task-Level Variables
+
+Variables defined specifically for a task.
+
+## 3) Command-Line Variables (CLI Variables)
+
+Variables passed during runtime using `-e`.
+
+Example:
+
+```bash id="m3x7ld"
+ansible-playbook -i inventory \
+-e ansible_user=ec2-user \
+-e ansible_password=DevOps321 \
+03-cliVar.yml \
+-e URL=url.google.com
+```
+
+---
+
+# Variable Precedence
+
+Ansible resolves variables using the following priority order:
+
+```text id="w2dn11"
+CLI Variables > Task Variables > Play Variables
+```
+
+Command-line variables override all lower-level variables.
+
+---
+
+# Understanding Ansible Facts
+
+## What are Facts?
+
+Facts are system properties automatically gathered by Ansible before playbook execution.
+
+Examples include:
+
+* IP address
+* Hostname
+* OS version
+* CPU details
+* Memory information
+
+When a playbook targets multiple servers, Ansible gathers facts from each server individually.
+
+---
+
+# Gathering Facts
+
+## Viewing Gathered Facts
+
+```bash id="p8j2qw"
+ansible -i inventory prod \
+-e ansible_user=ec2-user \
+-e ansible_password=DevOps321 \
+-m ansible.builtin.gather_facts
+```
+
+---
+
+## Controlling Fact Gathering
+
+By default:
+
+* Ansible gathers facts automatically.
+
+This behavior can be disabled:
+
+```yaml id="2xjlwm"
+gather_facts: no
+```
+
+### Why Disable Fact Gathering?
+
+* Faster playbook execution
+* Reduced overhead
+* Useful when system information is unnecessary
+
+### Important Note
+
+If fact gathering is disabled:
+
+* Accessing facts inside the playbook will result in failures because the facts were never collected.
+
+---
+
+# Key Takeaways
+
+* YAML is the foundational language for Ansible playbooks.
+* Proper indentation is critical in YAML.
+* Ansible playbooks are structured as:
+
+  * Playbook → Plays → Tasks
+* Variables can be defined at multiple levels with defined precedence.
+* Facts provide detailed server metadata automatically.
+* Fact gathering can be enabled or disabled depending on automation requirements.
