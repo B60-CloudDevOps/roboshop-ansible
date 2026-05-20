@@ -1,0 +1,6 @@
+- name: Name of the play1 
+  hosts: all
+  tasks:  
+    - name: name of the task from play1
+      ansible.builtin.debug:
+        msg: We are learning ansible

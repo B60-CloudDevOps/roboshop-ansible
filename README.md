@@ -224,3 +224,30 @@ Example capabilities:
 * Ad-hoc commands are suitable for quick operations.
 * Playbooks provide scalable and reusable automation workflows.
 * Modules are the building blocks of Ansible automation.
+
+
+# To learn YAML ( Yet Another Markup Language ), we need need to know 4 important basics 
+   1) Dictionary     ( a key with a single value is referred as dictionary )
+      ```
+         name: Martin D'vloper
+         job: Developer
+      ```
+   2) List           ( a key with multiple values is referred as list )
+      ```
+         skills:
+            - lisp
+            - fortran
+            - erlang
+      ```
+   3) Map            ( a key with multiple key value pairs is referred as Map )
+   4) Each & every yaml file should end with .yml or .yaml
+   5) Unline bash, YAML is indendation specific ( Either you use one or two spaces across the board )
+
+What is a playbook ?
+   Playbook is nothing but a list of plays.
+
+What is a play ?
+   A play is a list of tasks that has to be executed.
+
+What is a task ?
+   Task is something we want to execute.
