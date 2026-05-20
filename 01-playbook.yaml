@@ -4,3 +4,7 @@
     - name: name of the task from play1
       ansible.builtin.debug:
         msg: We are learning ansible
+
+    - name: Task from play1
+      ansible.builtin.debug:
+        msg: We are learning ansible in task2 of play1
