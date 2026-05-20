@@ -259,6 +259,8 @@ Variables Types:
    1) Play level variables
    2) Task level variable
    3) Command line variable 
+      ansible-playbook -i inventory -e ansible_user=ec2-user -e ansible_password=DevOps321 03-cliVar.yml -e URL=url.google.com
+      ( This is how we can supply a command line variable )
 
 
-   task variable > play level variable
+   cli variable > task variable > play level variable
