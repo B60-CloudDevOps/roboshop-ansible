@@ -251,3 +251,6 @@ What is a play ?
 
 What is a task ?
    Task is something we want to execute.
+
+How to run an ansible playbook ?
+   "ansible-playbook -i inventory -e ansible_user=ec2-user -e ansible_password=DevOps321 01-playbook.yaml"
