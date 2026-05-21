@@ -449,3 +449,5 @@ What is ansible-vault ?
 
 How can I encrypt a specific secret using ansible-vault ?
 ansible-vault encrypt_string robo@1  ( Then enter the password, while running the playbook to decrypt this you need to use the password )
+
+ansible-playbook -i inventory -e ansible_user=ec2-user -e ansible_password=DevOps321 10-secrets.yaml -ask-vault-pass ( You need to enter the password )
