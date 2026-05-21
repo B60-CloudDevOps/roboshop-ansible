@@ -14,3 +14,9 @@
     - name: Who executing the script is
       ansible.builtin.debug:  
         msg: "{{ OUT.stdout }}"
+
+    - name: Starting nginx service
+      ansible.builtin.service:
+        name: nginx
+        enabled: yes
+        state: started
