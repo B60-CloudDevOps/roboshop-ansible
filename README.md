@@ -437,19 +437,107 @@ If fact gathering is disabled:
 * Fact gathering can be enabled or disabled depending on automation requirements.
 
 
-In ansible-playbook, if a particular task is failed, subsequent tasks won't be executed.
+````markdown
+# Ignoring Task Failures in Ansible
 
-If you want to ingore a specific failure of tasks or don't want to care whether its a success or a failure, we would be using "ignore_error" for that task
+In `ansible-playbook`, if a particular task fails, the subsequent tasks will **not** be executed by default.
 
-What is ansible-vault ?
-   Ansible-vault helps in encrpting the secret in plain text to an encrypted format, which can only be decrypted using a password.
-   If you use ansible-vault, only ansible can understand that and if you're multiple tools this don't work
+If you want to ignore the failure of a specific task, or if you do not care whether the task succeeds or fails, you can use the `ignore_errors` option for that task.
 
-   Typically,no one prefer to use a decentralised approach, rather we host them on centralised secret management solution where all the tools & tech can access and refer like AWS Secret manager or Hashicorp Vault
+Example:
 
-How can I encrypt a specific secret using ansible-vault ?
-ansible-vault encrypt_string robo@1  ( Then enter the password, while running the playbook to decrypt this you need to use the password )
+```yaml
+- name: Remove a file if it exists
+  ansible.builtin.file:
+    path: /tmp/sample.txt
+    state: absent
+  ignore_errors: yes
+````
 
-ansible-playbook -i inventory -e ansible_user=ec2-user -e ansible_password=DevOps321 10-secrets.yaml --ask-vault-pass ( You need to enter the password )
+---
 
-With ansible-vault, you really cannot track AAA
+# What is Ansible Vault?
+
+`ansible-vault` helps encrypt sensitive information such as passwords, API keys, and secrets.
+
+It converts plain-text secrets into an encrypted format, which can only be decrypted using a vault password.
+
+Example use cases:
+
+* Database passwords
+* SSH credentials
+* API tokens
+* Cloud secrets
+
+One important limitation of `ansible-vault` is that the encrypted data is primarily understandable only by Ansible itself. If multiple tools or platforms need access to the same secrets, this approach becomes less flexible.
+
+Because of this, most organizations prefer a **centralized secret management solution** instead of a decentralized approach.
+
+Popular centralized secret management tools include:
+
+* AWS Secrets Manager
+* HashiCorp Vault
+* Azure Key Vault
+* Google Secret Manager
+
+These tools allow multiple applications, platforms, and automation tools to securely access secrets from a common location.
+
+---
+
+# Encrypting Secrets Using Ansible Vault
+
+## Encrypt a Specific String
+
+```bash
+ansible-vault encrypt_string 'robo@1'
+```
+
+You will be prompted to enter a vault password.
+
+Example output:
+
+```yaml
+!vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          6438616537396239343964366637313962...
+```
+
+You can directly place this encrypted value inside your playbooks or variable files.
+
+---
+
+# Running a Playbook with Vault Password
+
+```bash
+ansible-playbook -i inventory \
+  -e ansible_user=ec2-user \
+  -e ansible_password=DevOps321 \
+  10-secrets.yaml \
+  --ask-vault-pass
+```
+
+While executing the playbook, Ansible will prompt for the vault password in order to decrypt the encrypted secrets.
+
+---
+
+# Important Note About Ansible Vault
+
+With `ansible-vault`, tracking and auditing secret access becomes difficult compared to enterprise-grade centralized secret management systems.
+
+Modern secret management solutions provide:
+
+* Access control
+* Audit logging (AAA: Authentication, Authorization, Accounting)
+* Secret rotation
+* Fine-grained permissions
+* Centralized governance
+
+This is one of the reasons why teams often prefer tools like:
+
+* HashiCorp Vault
+* AWS Secrets Manager
+* Azure Key Vault
+* Google Secret Manager
+
+```
+```
