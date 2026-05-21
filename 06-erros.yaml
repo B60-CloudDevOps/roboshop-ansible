@@ -3,4 +3,11 @@
   tasks: 
     - name: Printing the first message
       ansible.builtin.debug:
+        msg: "Hai World"
+
+    - name: Running a shell command
+      ansible.builtin.shell: ps -ef |grep ansible 
+
+    - name: Printing the second message
+      ansible.builtin.debug:
         msg: "Hello World"
