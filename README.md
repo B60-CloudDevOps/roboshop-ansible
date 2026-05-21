@@ -440,3 +440,9 @@ If fact gathering is disabled:
 In ansible-playbook, if a particular task is failed, subsequent tasks won't be executed.
 
 If you want to ingore a specific failure of tasks or don't want to care whether its a success or a failure, we would be using "ignore_error" for that task
+
+What is ansible-vault ?
+   Ansible-vault helps in encrpting the secret in plain text to an encrypted format, which can only be decrypted using a password.
+   If you use ansible-vault, only ansible can understand that and if you're multiple tools this don't work
+
+   Typically,no one prefer to use a decentralised approach, rather we host them on centralised secret management solution where all the tools & tech can access and refer like AWS Secret manager or Hashicorp Vault
