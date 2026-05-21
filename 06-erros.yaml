@@ -6,7 +6,7 @@
         msg: "Hai World"
 
     - name: Running a shell command
-      ansible.builtin.shell: ps -ef |grep ansible 
+      ansible.builtin.shell: ps -ef |grep java | grep -v grep 
       register: OUT
 
     - name: Printing the second message
