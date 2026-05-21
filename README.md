@@ -435,3 +435,8 @@ If fact gathering is disabled:
 * Variables can be defined at multiple levels with defined precedence.
 * Facts provide detailed server metadata automatically.
 * Fact gathering can be enabled or disabled depending on automation requirements.
+
+
+In ansible-playbook, if a particular task is failed, subsequent tasks won't be executed.
+
+If you want to ingore a specific failure of tasks or don't want to care whether its a success or a failure, we would be using "ignore_error" for that task
