@@ -446,3 +446,6 @@ What is ansible-vault ?
    If you use ansible-vault, only ansible can understand that and if you're multiple tools this don't work
 
    Typically,no one prefer to use a decentralised approach, rather we host them on centralised secret management solution where all the tools & tech can access and refer like AWS Secret manager or Hashicorp Vault
+
+How can I encrypt a specific secret using ansible-vault ?
+ansible-vault encrypt_string robo@1  ( Then enter the password, while running the playbook to decrypt this you need to use the password )
