@@ -9,12 +9,6 @@
     name: nginx 
     state: present
 
-- name: Starting Nginx service
-  ansible.builtin.service:
-    name: nginx
-    enabled: yes
-    state: started
-
 - name: Cleanup of the default Nginx content
   ansible.builtin.file:
     path: /usr/share/nginx/html
@@ -30,6 +24,12 @@
     src: "{{ url }}"
     dest: /usr/share/nginx/html
     remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
+
+- name: Starting Nginx service
+  ansible.builtin.service:
+    name: nginx
+    enabled: yes
+    state: restarted
 
 - name: Configuring the hostName
   ansible.builtin.shell: set-hostname frontend-{{ env }}
