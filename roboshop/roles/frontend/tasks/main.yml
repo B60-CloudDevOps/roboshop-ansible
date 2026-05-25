@@ -15,16 +15,16 @@
     enabled: yes
     state: started
 
-- name: Download and extract frontend
-  ansible.builtin.unarchive:
-    src: "{{ url }}"
-    dest: /tmp/
-    remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
-
 - name: Cleanup of the default Nginx content
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
+
+- name: Download and extract frontend
+  ansible.builtin.unarchive:
+    src: "{{ url }}"
+    dest: /usr/share/nginx/html
+    remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
 
 - name: Configuring the hostName
   ansible.builtin.shell: set-hostname frontend-{{ env }}
