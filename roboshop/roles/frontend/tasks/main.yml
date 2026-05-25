@@ -2,7 +2,7 @@
   ansible.builtin.shell: dnf module disable "{{ packageName }}" -y
 
 - name: Enabling the default "{{ packageName }}" module
-  ansible.builtin.shell: dnf module enable "{{ packageName }}":1.24 -y
+  ansible.builtin.shell: dnf module enable "{{ packageName }}":"{{ packageVersion }}" -y
 
 - name: Installing "{{ packageName }}" 
   ansible.builtin.package:
