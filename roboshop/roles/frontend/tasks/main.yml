@@ -1,33 +1,33 @@
-- name: Disabling the default nginx module
-  ansible.builtin.shell: dnf module disable nginx -y
+- name: Disabling the default "{{ packageName }}" module
+  ansible.builtin.shell: dnf module disable "{{ packageName }}" -y
 
-- name: Enabling the default nginx module
-  ansible.builtin.shell: dnf module enable nginx:1.24 -y
+- name: Enabling the default "{{ packageName }}" module
+  ansible.builtin.shell: dnf module enable "{{ packageName }}":1.24 -y
 
-- name: Installing Nginx 
+- name: Installing "{{ packageName }}" 
   ansible.builtin.package:
-    name: nginx 
+    name: "{{ packageName }}" 
     state: present
 
-- name: Cleanup of the default Nginx content
+- name: Cleanup of the default "{{ packageName }}" content
   ansible.builtin.file:
-    path: /usr/share/nginx/html
+    path: /usr/share/"{{ packageName }}"/html
     state: absent
 
-- name: Preparing the Nginx directory
+- name: Preparing the "{{ packageName }}" directory
   ansible.builtin.file:
-    path: /usr/share/nginx/html
+    path: /usr/share/"{{ packageName }}"/html
     state: directory
 
 - name: Download and extract frontend
   ansible.builtin.unarchive:
     src: "{{ url }}"
-    dest: /usr/share/nginx/html
+    dest: /usr/share/"{{ packageName }}"/html
     remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
 
-- name: Starting Nginx service
+- name: Starting "{{ packageName }}" service
   ansible.builtin.service:
-    name: nginx
+    name: "{{ packageName }}"
     enabled: yes
     state: restarted
 
