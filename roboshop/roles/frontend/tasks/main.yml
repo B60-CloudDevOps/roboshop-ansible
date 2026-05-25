@@ -1,6 +1,8 @@
-- name: Disabling the default nginx version 
+- name: Disabling the default nginx module
   ansible.builtin.dnf:
-    name: '@nginx'
+    module_disable:
+      - nginx
+    state: absent
 
 - name: Enabling the default nginx version 
   ansible.builtin.dnf:
