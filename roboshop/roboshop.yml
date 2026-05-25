@@ -1,5 +1,5 @@
 - name: Configuring the roboshop app
   become: true
-  hosts: frontend
+  hosts: {{ component }}
   roles:
-    - frontend
+    - {{ component }}

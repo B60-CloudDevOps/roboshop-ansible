@@ -1,2 +1,5 @@
 [frontend]
 frontend-dev.robotshop.fun
+
+[mongodb]
+mongodb-dev.robotshop.fun
