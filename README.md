@@ -553,3 +553,7 @@ With Roles, you can write once and use it multiple times and which can help in k
 
 Here is the documented way of using Ansible Roles and names are strctly enforce, tasks/ should be in the tasks folder under main.yml to execute by default.
 
+How to run a specific role ?
+"ansible-playbook -i inv-dev -e ansible_user=ec2-user -e ansible_password=DevOps321 roboshop.yml" 
+and the role to run a playbook is described in the file under the section 
+- roles:
