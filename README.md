@@ -541,3 +541,15 @@ This is one of the reasons why teams often prefer tools like:
 
 ```
 ```
+
+
+Writing playbooks is not a greate way and there is no relation on which file is been used by which file.
+You really don't know which variable file is been used by which plabook.
+
+The best hardedned approach to handle playbooks is using something called "Ansible Roles"
+
+This ansible roles offers the standard way of organiating the playbooks, associated variable files, associated files and all.
+With Roles, you can write once and use it multiple times and which can help in keeping the code DRY!!!!
+
+Here is the documented way of using Ansible Roles and names are strctly enforce, tasks/ should be in the tasks folder under main.yml to execute by default.
+
