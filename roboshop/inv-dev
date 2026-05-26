@@ -3,3 +3,6 @@ frontend-dev.robotshop.fun
 
 [mongodb]
 mongodb-dev.robotshop.fun
+
+[catalogue]
+catalogue-dev.robotshop.fun
