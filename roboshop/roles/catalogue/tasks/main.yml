@@ -1,0 +1,16 @@
+- name: Disable existing nodejs module stream
+	community.general.dnf_module:
+		name: nodejs
+		state: disabled
+
+- name: Enable nodejs module stream 20
+	community.general.dnf_module:
+		name: nodejs
+		stream: '20'
+		state: enabled
+
+- name: Install nodejs package
+	ansible.builtin.dnf:
+		name: nodejs
+		state: present
+		update_cache: yes
