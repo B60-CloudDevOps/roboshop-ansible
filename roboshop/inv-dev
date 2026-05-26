@@ -12,3 +12,6 @@ redis-dev.robotshop.fun
 
 [user]
 user-dev.robotshop.fun
+
+[cart]
+cart-dev.robotshop.fun
