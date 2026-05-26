@@ -48,7 +48,7 @@
     dest: /etc/yum.repos.d/mongodb.repo
 
 - name: Installing mongodbShell
-  ansible.builtin.package:
+  ansible.builtin.dnf:
     name: mongodb-mongosh
     state: present
 
