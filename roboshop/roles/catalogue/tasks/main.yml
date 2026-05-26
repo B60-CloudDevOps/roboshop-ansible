@@ -29,7 +29,7 @@
 
 - name: Download and extracting the {{ component }} service
   ansible.builtin.unarchive:
-    src: "{{ url }}"
+    src: {{ url }}
     dest: {{ appDirectory }}
     remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
 
@@ -39,7 +39,7 @@
 
 - name: Configuring the {{ component }} service
   ansible.builtin.template:
-    src: {{ component }}.service
+    src: "{{ component }}.service"
     dest: /etc/systemd/system/{{ component }}.service
 
 - name: Starting {{ component }} service
