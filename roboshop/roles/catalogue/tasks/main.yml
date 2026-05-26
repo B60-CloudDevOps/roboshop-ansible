@@ -42,6 +42,19 @@
     src: "{{ component }}.service"
     dest: "/etc/systemd/system/{{ component }}.service"
 
+- name: Configuring the mongodb repo 
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Installing mongodbShell
+  ansible.builtin.package:
+    name: mongodb-mongosh
+    state: present
+
+- name: Injecting Mongodb Schema for {{ component }} service
+  ansible.builtin.shell: "mongosh --host mongodb-{{ env }}.robotshop.fun < /app/db/master-data.js"  
+
 - name: Starting {{ component }} service
   ansible.builtin.service:
     name: "{{ component }}"
