@@ -1,4 +1,4 @@
-- name: Disable existing nodejs module stream
+- name: Disable existing nodejs module stream for {{ component }} server
 	community.general.dnf_module:
 		name: nodejs
 		state: disabled
