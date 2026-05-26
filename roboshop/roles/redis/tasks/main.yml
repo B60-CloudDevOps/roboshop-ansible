@@ -3,15 +3,10 @@
 
 - name: Enable {{ packageName }} module stream {{ packageVersion }}
   ansible.builtin.shell: dnf module enable {{ packageName }}:{{ packageVersion }} -y
-  register: result
-
-- name: printing the result of enabling the module stream
-  ansible.builtin.debug:
-    msg: "{{ result.stdout_lines }}"
 
 - name: Installing "{{ packageName }}" 
   ansible.builtin.package:
-    name: "{{ packageName }}:{{ packageVersion }}" 
+    name: "{{ packageName }}" 
     state: present
 
 # - name: Enabling the visibility of "{{ packageName }}" conf
