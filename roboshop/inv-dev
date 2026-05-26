@@ -6,3 +6,6 @@ mongodb-dev.robotshop.fun
 
 [catalogue]
 catalogue-dev.robotshop.fun
+
+[redis]
+catalogue-dev.robotshop.fun
