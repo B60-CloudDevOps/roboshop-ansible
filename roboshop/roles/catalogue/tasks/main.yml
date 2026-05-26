@@ -1,7 +1,7 @@
-- name: Disable existing nodejs module stream for {{ component }} server
+- name: Disable existing {{ packageName }} module stream for {{ component }} server
   ansible.builtin.shell: dnf module disable {{ packageName }} -y
 
-- name: Enable nodejs module stream 20
+- name: Enable {{ packageName }} module stream {{ packageVersion }}
   ansible.builtin.shell: dnf module enable {{ packageName }}:{{ packageVersion }} -y
 
 - name: Installing "{{ packageName }}" 
