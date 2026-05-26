@@ -9,9 +9,6 @@
     name: "{{ packageName }}" 
     state: present
 
-- name: Configuring the hostName
-  ansible.builtin.shell: set-hostname {{ component }}-{{ env }}
-
 - name: creating appuser for {{ component }} service
   ansible.builtin.user:
     name: "{{ appUser }}"
@@ -61,3 +58,6 @@
     enabled: yes
     state: restarted
     daemon_reload: yes
+
+- name: Configuring the hostName
+  ansible.builtin.shell: set-hostname {{ component }}-{{ env }}
