@@ -1,19 +1,10 @@
 - name: "Disable existing nodejs module stream for {{ component }} server"
-	community.general.dnf_module:
-		name: nodejs
-		state: disabled
+	ansible.builtin.shell: dnf module disable nodejs
 
 - name: "Enable nodejs module stream 20"
-	community.general.dnf_module:
-		name: nodejs
-		stream: '20'
-		state: enabled
+	ansible.builtin.shell: dnf module enable nodejs:20
 
 - name: "Install nodejs package"
 	ansible.builtin.dnf:
 		name: nodejs
 		state: present
-		update_cache: yes
-
-- name: Configuring the hostName
-  ansible.builtin.shell: set-hostname {{ component }}-{{ env }}
