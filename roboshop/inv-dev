@@ -9,3 +9,6 @@ catalogue-dev.robotshop.fun
 
 [redis]
 redis-dev.robotshop.fun
+
+[user]
+user-dev.robotshop.fun
