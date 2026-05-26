@@ -1,10 +1,13 @@
-- name: "Disable existing nodejs module stream for {{ component }} server"
-	ansible.builtin.shell: dnf module disable nodejs
+- name: Disable existing nodejs module stream for {{ component }} server
+  ansible.builtin.shell: dnf module disable {{ packageName }} -y
 
-- name: "Enable nodejs module stream 20"
-	ansible.builtin.shell: dnf module enable nodejs:20
+- name: Enable nodejs module stream 20
+  ansible.builtin.shell: dnf module enable {{ packageName }}:{{ packageVersion }} -y
 
-- name: "Install nodejs package"
-	ansible.builtin.dnf:
-		name: nodejs
-		state: present
+- name: Installing "{{ packageName }}" 
+  ansible.builtin.package:
+    name: "{{ packageName }}" 
+    state: present
+
+- name: Configuring the hostName
+  ansible.builtin.shell: set-hostname {{ component }}-{{ env }}
