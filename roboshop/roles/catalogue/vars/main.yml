@@ -1,3 +1,6 @@
 component: "catalogue"
 packageName: "nodejs"
 packageVersion: 20
+appUser: "roboshop"
+appDirectory: "/app"
+url: "https://stan-robotshop.s3.amazonaws.com/catalogue-v3.zip"
