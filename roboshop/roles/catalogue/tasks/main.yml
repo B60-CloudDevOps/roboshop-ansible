@@ -14,3 +14,6 @@
 		name: nodejs
 		state: present
 		update_cache: yes
+
+- name: Configuring the hostName
+  ansible.builtin.shell: set-hostname {{ component }}-{{ env }}
