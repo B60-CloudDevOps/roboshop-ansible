@@ -1,0 +1,3 @@
+component: "rabbitmq"
+packageName: "rabbitmq-server"
+appUser: "roboshop"
