@@ -25,7 +25,7 @@
     remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
 
 - name: Generating artifact dependencies for {{ component }} service
-  ansible.builtin.command: mvn clean package && mv target/{{ component }}-1.0.jar {{ component }}.jar 
+  ansible.builtin.shell: mvn clean package && mv target/{{ component }}-1.0.jar {{ component }}.jar 
   args:
     chdir: "{{ appDirectory }}"
 
