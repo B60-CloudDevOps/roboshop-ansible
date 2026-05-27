@@ -21,3 +21,6 @@ mysql-dev.robotshop.fun
 
 [shipping]
 shipping-dev.robotshop.fun
+
+[rabbitmq]
+rabbitmq-dev.robotshop.fun
