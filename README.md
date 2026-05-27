@@ -543,23 +543,29 @@ This is one of the reasons why teams often prefer tools like:
 ```
 
 
-Writing playbooks is not a greate way and there is no relation on which file is been used by which file.
-You really don't know which variable file is been used by which plabook.
+## Ansible Roles
 
-The best hardedned approach to handle playbooks is using something called "Ansible Roles"
+Writing playbooks on their own can be difficult to manage, and it is often unclear which files are used by which playbook.
+You may not know which variable file is used by a given playbook.
 
-This ansible roles offers the standard way of organiating the playbooks, associated variable files, associated files and all.
-With Roles, you can write once and use it multiple times and which can help in keeping the code DRY!!!!
+The best hardened approach to handle playbooks is using Ansible Roles.
 
-Here is the documented way of using Ansible Roles and names are strctly enforce, tasks/ should be in the tasks folder under main.yml to execute by default.
+Ansible roles provide a standard way of organizing playbooks, associated variable files, templates, and other files.
+With roles, you can write once and reuse multiple times, which helps keep the code DRY.
 
-How to run a specific role ?
-"ansible-playbook -i inv-dev -e ansible_user=ec2-user -e ansible_password=DevOps321 roboshop.yml" 
-and the role to run a playbook is described in the file under the section 
-- roles:
+Here is the documented way of using Ansible Roles. Names are strictly enforced, and `tasks/` should contain `main.yml` to execute by default.
 
+How to run a specific role?
 
-> Ansible Roles :
+```bash
+ansible-playbook -i inv-dev -e ansible_user=ec2-user -e ansible_password=DevOps321 roboshop.yml
+```
+
+The roles to run are described in the playbook under the `roles:` section.
+
+Example role structure:
+
+```text
 roles/
     common/               # this hierarchy represents a "role"
         tasks/            #
@@ -580,3 +586,4 @@ roles/
         library/          # roles can also include custom modules
         module_utils/     # roles can also include custom module_utils
         lookup_plugins/   # or other types of plugins, like lookup in this case
+```
