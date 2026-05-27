@@ -18,3 +18,6 @@ cart-dev.robotshop.fun
 
 [mysql]
 mysql-dev.robotshop.fun
+
+[shipping]
+shipping-dev.robotshop.fun
