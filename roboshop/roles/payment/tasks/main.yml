@@ -26,9 +26,9 @@
     remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
 
 - name: Install specified python requirements
-  ansible.builtin.pip:
-    requirements: "{{ appDirectory }}/requirements.txt"
-    executable: pip3.11
+  ansible.builtin.shell: pip3.11 install -r requirements.txt
+  args:
+    chdir: "{{ appDirectory }}"
 
 - name: Configuring the {{ component }} service
   ansible.builtin.template:
