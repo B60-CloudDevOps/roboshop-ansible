@@ -5,7 +5,7 @@
 
 - name: Starting "{{ packageName }}" service
   ansible.builtin.service:
-    name: "{{ component }}"
+    name: mysqld
     enabled: yes
     state: restarted
 
