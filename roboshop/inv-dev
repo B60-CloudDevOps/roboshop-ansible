@@ -24,3 +24,6 @@ shipping-dev.robotshop.fun
 
 [rabbitmq]
 rabbitmq-dev.robotshop.fun
+
+[payment]
+payment-dev.robotshop.fun
