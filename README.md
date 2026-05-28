@@ -610,3 +610,19 @@ Dry status:
 - NodeJS components are 100% dry.
 - Java components are 100% dry.
 - Python components are 100% dry.
+
+> Next concepts are :
+  1) ansible-pull:
+       We can login to the server that needs ansible configuriaton management, we can direccly point the command to the playbook on git and run the playbook directly.
+
+       ansible-pull expects ansible to be installed on the servers you're running the command.
+
+       you don't need to maintain separate server to act as a ansible-node.
+
+  2) Role Dependency:
+        This ensures whenever we run a role-x and if it needs role-y to be executed first then it ensure that role-y to be run first.
+
+        Let's say for shipping component, mysql is dependent and if you run shipping without mysql , shipping wll fail.
+
+        We can create dependency  in the shipping statng mySql as dependeent role, whenever you run shipping mysql wll be executed first and that dependency s configured in the meta/main.yml
+        
