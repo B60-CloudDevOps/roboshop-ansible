@@ -28,7 +28,7 @@
 - name: Configuring service
   ansible.builtin.include_role:
     name: common                 
-    tasks_from: configureService           # name of the task file    
+    tasks_from: configureSvc           # name of the task file    
 
 - name: Configuring the hostName
   ansible.builtin.include_role:
