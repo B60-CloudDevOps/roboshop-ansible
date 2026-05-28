@@ -580,7 +580,7 @@ roles/
         vars/             #
             main.yml      #  <-- variables associated with this role
         defaults/         #
-            main.yml      #  <-- default lower priority variables for this role
+            main.yml      #  <-- default lower-priority variables for this role
         meta/             #
             main.yml      #  <-- role dependencies
         library/          # roles can also include custom modules
@@ -588,26 +588,25 @@ roles/
         lookup_plugins/   # or other types of plugins, like lookup in this case
 ```
 
+> We completed the project in a hardwired way and it did not meet the NFRs:
+> 1) Code was repeated, so the code was WET.
+>    I want to identify common patterns and make the code DRY by writing a role with shared patterns and calling it.
+> 2) Re-run should work, and it does.
+> 3) Infrastructure was created manually and I want that automated (we do that with Terraform).
+> 4) We are running the Ansible playbook from the workstation; we want it to run from a UI (CI framework).
 
-> We completed the project in a hardward way and it has not met the NFR 
-  1) Code is repeated, which means CODE is WET
-      I would like to identify the common patterns and would make the code DRY by writing a role with common patterns and calling them.
-  2) Re-run should work and its working
-  3) Infrastructe is been created manually and I want that to be automated ( We do it by using terraform )
-  4) We are running the ansible-playbook from the workstation, we want that to be from UI ( CI Framework )
+> When calling a role, only the tasks in `main.yml` are executed.
+> Can we execute the tasks in `tasks/nodejs.yml` from a role `common`? Yes.
+> That is called including the role, which can be done as follows:
 
-> When calling a role, only the tasks in the main.yml are going to be execute!
-  Can we execute the tasks in a file tasks/nodejs.yml from a role common ? yes and that's called Including the role, which can be done by the following way: 
-
+```yaml
+- name: Run tasks/other.yml instead of main
+  ansible.builtin.include_role:
+    name: myrole
+    tasks_from: other
 ```
-  - name: Run tasks/other.yaml instead of 'main'
-    ansible.builtin.include_role:
-      name: myrole
-      tasks_from: other
-```
 
-
-Status: 
-  nodejs compoments are 100% dry
-  java compoments are 100% dry
-  python components are 100% dry
+Dry status:
+- NodeJS components are 100% dry.
+- Java components are 100% dry.
+- Python components are 100% dry.
