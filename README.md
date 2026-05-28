@@ -587,3 +587,9 @@ roles/
         module_utils/     # roles can also include custom module_utils
         lookup_plugins/   # or other types of plugins, like lookup in this case
 ```
+
+
+> We completed the project in a hardward way and it has not met the NFR 
+  1) Code is repeated, which means CODE is WET
+      I would like to identify the common patterns and would make the code DRY
+  2) Re-run should work and its working
