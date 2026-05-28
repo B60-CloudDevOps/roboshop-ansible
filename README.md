@@ -593,3 +593,5 @@ roles/
   1) Code is repeated, which means CODE is WET
       I would like to identify the common patterns and would make the code DRY
   2) Re-run should work and its working
+  3) Infrastructe is been created manually and I want that to be automated ( We do it by using terraform )
+  4) We are running the ansible-playbook from the workstation, we want that to be from UI ( CI Framework )
