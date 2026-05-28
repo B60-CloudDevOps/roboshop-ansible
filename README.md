@@ -605,3 +605,8 @@ roles/
       name: myrole
       tasks_from: other
 ```
+
+
+Status: 
+  nodejs compoments are 100 dry
+  

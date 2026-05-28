@@ -7,3 +7,4 @@ schema:
   - "schema.sql"
   - "app-user.sql"
   - "master-data.sql"
+setup_mysql_schema: true
