@@ -595,3 +595,13 @@ roles/
   2) Re-run should work and its working
   3) Infrastructe is been created manually and I want that to be automated ( We do it by using terraform )
   4) We are running the ansible-playbook from the workstation, we want that to be from UI ( CI Framework )
+
+> When calling a role, only the tasks in the main.yml are going to be execute!
+  Can we execute the tasks in a file tasks/nodejs.yml from a role common ? yes and that's called Including the role, which can be done by the following way: 
+
+```
+  - name: Run tasks/other.yaml instead of 'main'
+    ansible.builtin.include_role:
+      name: myrole
+      tasks_from: other
+```
