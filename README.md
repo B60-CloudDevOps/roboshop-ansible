@@ -608,5 +608,6 @@ roles/
 
 
 Status: 
-  nodejs compoments are 100 dry
-  
+  nodejs compoments are 100% dry
+  java compoments are 100% dry
+  python components are 100% dry
