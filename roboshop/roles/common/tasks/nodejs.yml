@@ -18,10 +18,12 @@
   community.general.npm:
     path: "{{ appDirectory }}" 
 
+# This task is required only for catalogue service, as it is the only service which has mongodb schema to be injected. Other services are not having any schema to be injected. So, this task is not required for other services.
 - name: Injecting the mongodb schema for {{ component }} service
   ansible.builtin.include_role:
     name: common                 
-    tasks_from: injectMongoSchema           # name of the task file    
+    tasks_from: injectMongoSchema          # name of the task file
+  when: setup_mongodb_schema is defined
 
 - name: Configuring service
   ansible.builtin.include_role:
