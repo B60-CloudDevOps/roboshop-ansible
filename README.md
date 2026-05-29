@@ -625,4 +625,12 @@ Dry status:
         Let's say for shipping component, mysql is dependent and if you run shipping without mysql , shipping wll fail.
 
         We can create dependency  in the shipping statng mySql as dependeent role, whenever you run shipping mysql wll be executed first and that dependency s configured in the meta/main.yml
-        
+
+
+How to run ansible-pull ?
+  To run ansible-pull., here are the instructions:
+    1) Log in to the server that needs Ansible Configuration Management
+    2) Ensure ansible is installed on the servre  ( If not install it )
+    3) Then run the ansible-pull using the below command, no need of auth or anything ( At this point of time, the only endPoint supported by ansible pull is from GIT )
+
+    
