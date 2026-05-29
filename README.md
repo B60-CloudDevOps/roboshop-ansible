@@ -633,4 +633,6 @@ How to run ansible-pull ?
     2) Ensure ansible is installed on the servre  ( If not install it )
     3) Then run the ansible-pull using the below command, no need of auth or anything ( At this point of time, the only endPoint supported by ansible pull is from GIT )
 
-    
+```
+ $ ansible-pull -U https://github.com/B60-CloudDevOps/roboshop-ansible.git roboshop/roboshop-pull.yml -e env=dev -e component=mongodb
+```
