@@ -11,18 +11,18 @@
 
 - name: Cleanup of the default "{{ packageName }}" content
   ansible.builtin.file:
-    path: /usr/share/"{{ packageName }}"/html
+    path: "/usr/share/{{ packageName }}/html"
     state: absent
 
 - name: Preparing the "{{ packageName }}" directory
   ansible.builtin.file:
-    path: /usr/share/"{{ packageName }}"/html
+    path: "/usr/share/{{ packageName }}/html"
     state: directory
 
 - name: Download and extract frontend
   ansible.builtin.unarchive:
     src: "{{ url }}"
-    dest: /usr/share/"{{ packageName }}"/html
+    dest: "/usr/share/{{ packageName }}/html"
     remote_src: yes           # If yes, download from the URL mentioned in src machine, if no, copy from local machine to remote machine
 
 - name: Updating the nginx configuration file

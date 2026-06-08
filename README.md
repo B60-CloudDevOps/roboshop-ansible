@@ -636,3 +636,9 @@ How to run ansible-pull ?
 ```
  $ ansible-pull -U https://github.com/B60-CloudDevOps/roboshop-ansible.git roboshop/roboshop-pull.yml -e env=dev -e component=mongodb
 ```
+
+What are the areas of improvements still ?
+  1) Infrastructure creation is still manual.
+  2) I want less toil ( Toil: Manual Actions )
+
+More Toil = More Manual Actions = More Mistakes = More Outages = Less reputation & revenus loss.
