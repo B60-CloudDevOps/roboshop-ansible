@@ -1,7 +1,7 @@
 - name: Configuring the vault repository
   ansible.builtin.template:
-    src: vault.repo
-    dest: /etc/yum.repos.d/vault.repo 
+    src: "vault.repo"
+    dest: "/etc/yum.repos.d/vault.repo"
 
 - name: Installing vault
   ansible.builtin.package:
