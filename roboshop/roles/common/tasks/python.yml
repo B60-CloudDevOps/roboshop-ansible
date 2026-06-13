@@ -4,6 +4,11 @@
     state: present
   loop: "{{ packages }}"
 
+- name: Prereq packages
+  ansible.builtin.include_role:
+    name: common                 
+    tasks_from: prereq-package           # name of the task file    
+
 - name: Creating user and configuring the app directory for {{ component }} service
   ansible.builtin.include_role:
     name: common                 
