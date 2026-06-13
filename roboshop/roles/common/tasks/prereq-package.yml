@@ -1,2 +1,2 @@
 - name: Installing hvac - prereq package for value
-  ansible.builtin.shell: pip3 install hvac
+  ansible.builtin.shell: pip3.11 install hvac
