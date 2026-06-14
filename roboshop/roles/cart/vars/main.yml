@@ -4,3 +4,4 @@ packageVersion: 20
 appUser: "roboshop"
 appDirectory: "/app"
 url: "https://stan-robotshop.s3.amazonaws.com/cart-v3.zip"
+secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/{{ component }}-{{ env }} token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"

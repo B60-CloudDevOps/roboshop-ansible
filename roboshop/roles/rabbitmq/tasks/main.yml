@@ -17,7 +17,7 @@
 - name: Creating {{ appUser }} for {{ component }} service
   community.rabbitmq.rabbitmq_user:
     user: "{{ appUser }}"
-    password: roboshop123
+    password: "{{ secrets.rabbitmq_pass }}"
     vhost: /
     configure_priv: .*
     read_priv: .*
