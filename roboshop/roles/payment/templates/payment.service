@@ -9,8 +9,8 @@ Environment=CART_PORT=8080
 Environment=USER_HOST=user-{{ env }}.robotshop.fun
 Environment=USER_PORT=8080
 Environment=AMQP_HOST=rabbitmq-{{ env }}.robotshop.fun
-Environment=AMQP_USER={{ secrets.RABBITMQ_USER }}
-Environment=AMQP_PASS={{ secrets.RABBITMQ_PASS }}
+Environment=AMQP_USER={{ secrets.rabbitmq_user }}
+Environment=AMQP_PASS={{ secrets.rabbitmq_pass }}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
