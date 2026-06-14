@@ -6,4 +6,4 @@ packages:
 appUser: "roboshop"
 appDirectory: "/app"
 url: "https://stan-robotshop.s3.amazonaws.com/payment-v3.zip"
-secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=rabbitmq-{{ env }}/data/ token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
+secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/rabbitmq-{{ env }} token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
