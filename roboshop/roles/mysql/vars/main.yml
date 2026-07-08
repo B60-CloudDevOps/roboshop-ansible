@@ -1,3 +1,8 @@
 component: "mysql"
 packageName: "mysql-server"
-secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/{{ component }}-{{ env }} token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
+schema:
+  - "schema.sql"
+  - "app-user.sql"
+  - "master-data.sql"
+setup_mysql_schema: true
+secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/mysql token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"

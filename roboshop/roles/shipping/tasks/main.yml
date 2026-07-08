@@ -2,19 +2,3 @@
   ansible.builtin.include_role:
     name: common                 # name of the role
     tasks_from: java             # name of the task file
-
-# Clones the repo 
-- name: Clone on the remote host - {{ component }} service
-  ansible.builtin.git:
-    repo: 'https://github.com/B60-CloudDevOps/shipping.git'
-    dest: /tmp
-    version: main
-
-- name: Installing mysqlShell
-  ansible.builtin.package:
-    name: mysql
-    state: present
-
-- name: Injecting Schema for {{ component }} service
-  loop: "{{ schema }}"
-  ansible.builtin.shell: mysql -h mysql-{{ env }}.robotshop.fun -uroot -p{{ secrets.mysql_pass }} < /tmp/shipping/db/{{ item }}
