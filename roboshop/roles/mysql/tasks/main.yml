@@ -16,12 +16,12 @@
 - name: Clone on the remote host - {{ component }} service
   ansible.builtin.git:
     repo: 'https://github.com/B60-CloudDevOps/shipping.git'
-    dest: /tmp
+    dest: /tmp/checkout
     version: main
 
 - name: Injecting Schema for {{ component }} service
   loop: "{{ schema }}"
-  ansible.builtin.shell: mysql -h mysql-{{ env }}.robotshop.fun -uroot -p{{ secrets.mysql_pass }} < /tmp/shipping/db/{{ item }}  
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.robotshop.fun -uroot -p{{ secrets.mysql_pass }} < /tmp/checkout/shipping/db/{{ item }}  
 
 - name: Configuring the hostName
   ansible.builtin.shell: set-hostname {{ component }}-{{ env }}
