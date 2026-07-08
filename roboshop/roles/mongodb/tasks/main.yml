@@ -20,5 +20,16 @@
     enabled: yes
     state: restarted
 
+# Clones the repo 
+- name: Clone on the remote host - {{ component }} service
+  ansible.builtin.git:
+    repo: 'https://github.com/B60-CloudDevOps/catalogue.git'
+    dest: /tmp
+    version: main
+
+- name: Injecting MongoDB Master Data
+  loop: "{{ schema }}"
+  ansible.builtin.shell: mongosh --host mongodb-{{ env }}.robotshop.fun </tmp/db/master-data.js 
+
 - name: Configuring the hostName
   ansible.builtin.shell: set-hostname {{ component }}-{{ env }}

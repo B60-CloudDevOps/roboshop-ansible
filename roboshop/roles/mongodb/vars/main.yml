@@ -1,3 +1,3 @@
 component: "mongodb"
 packageName: "mongodb-org"
-secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=kv/data/rabbitmq-{{ env }} token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
+secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/mongodb token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
