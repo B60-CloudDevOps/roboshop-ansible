@@ -29,7 +29,7 @@
 
 - name: Injecting MongoDB Master Data
   loop: "{{ schema }}"
-  ansible.builtin.shell: mongosh --host mongodb-{{ env }}.robotshop.fun </tmp/checkout/catalogue/db/master-data.js 
+  ansible.builtin.shell: mongosh --host mongodb-{{ env }}.robotshop.fun </tmp/checkout/db/master-data.js 
 
 - name: Configuring the hostName
   ansible.builtin.shell: set-hostname {{ component }}-{{ env }}

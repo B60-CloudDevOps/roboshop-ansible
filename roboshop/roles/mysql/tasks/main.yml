@@ -21,7 +21,7 @@
 
 - name: Injecting Schema for {{ component }} service
   loop: "{{ schema }}"
-  ansible.builtin.shell: mysql -h mysql-{{ env }}.robotshop.fun -uroot -p{{ secrets.mysql_pass }} < /tmp/checkout/shipping/db/{{ item }}  
+  ansible.builtin.shell: mysql -h mysql-{{ env }}.robotshop.fun -uroot -p{{ secrets.mysql_pass }} < /tmp/checkout/db/{{ item }}  
 
 - name: Configuring the hostName
   ansible.builtin.shell: set-hostname {{ component }}-{{ env }}
