@@ -1,4 +1,4 @@
 component: "rabbitmq"
 packageName: "rabbitmq-server"
 appUser: "roboshop"
-secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/mysql token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
+secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-{{ env }}/data/rabbitmq_pass token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
