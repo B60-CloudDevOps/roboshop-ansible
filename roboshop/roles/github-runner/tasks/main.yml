@@ -19,6 +19,13 @@
     name: libicu
     state: installed
 
+- name: Install gcc and python3-devel
+  ansible.builtin.package:
+    name:
+      - gcc
+      - python3-devel
+    state: present
+
 - name: Configure runner
   ansible.builtin.shell: ./config.sh --url https://github.com/{{ github_org_name }} --token "{{ secrets.runner_token }}" --runnergroup Default --name github-runner --labels self-hosted --work _work --replace
   args:
@@ -47,6 +54,26 @@
   ansible.builtin.dnf:
     name: terraform
     state: installed
+
+- name: Get latest stable kubectl version
+  ansible.builtin.uri:
+    url: https://dl.k8s.io/release/stable.txt
+    return_content: true
+  register: stable_version
+
+- name: Download kubectl
+  ansible.builtin.get_url:
+    url: "https://dl.k8s.io/release/{{ stable_version.content | trim }}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: '0755'
+
+- name: Verify installation
+  ansible.builtin.command: kubectl version --client
+  register: kubectl_version
+  changed_when: false
+
+- debug:
+  var: kubectl_version.stdout
 
 - name: Install App Packages
   ansible.builtin.dnf:
