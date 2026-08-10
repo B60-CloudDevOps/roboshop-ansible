@@ -113,3 +113,19 @@
     name: github-runner
     groups: docker
     append: yes
+
+- name: Install Helm
+  ansible.builtin.shell: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash
+
+- name: Verify Helm binary
+  ansible.builtin.command: type helm
+  register: helm_type
+  changed_when: false
+
+- name: Verify Helm installation
+  ansible.builtin.command: helm --version
+  register: helm_version
+  changed_when: false
+
+- debug:
+    var: helm_version.stdout
