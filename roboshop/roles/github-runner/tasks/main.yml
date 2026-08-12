@@ -1,6 +1,11 @@
 - name: Set Prompt
   ansible.builtin.shell: set-hostname github-runner-node
 
+- name: Download Docker Repo
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/rhel/docker-ce.repo
+    dest: /etc/yum.repos.d/docker.repo
+
 - name: Install Docker
   ansible.builtin.dnf:
     name:
