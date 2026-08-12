@@ -1,0 +1,131 @@
+- name: Set Prompt
+  ansible.builtin.shell: set-hostname github-runner
+
+- name: Add github runner user
+  ansible.builtin.user:
+    name: github-runner
+    home: /github-runner
+
+- name: Download runner software
+  ansible.builtin.unarchive:
+    src: https://github.com/actions/runner/releases/download/v{{ runner_version }}/actions-runner-linux-x64-{{ runner_version }}.tar.gz
+    dest: /github-runner
+    owner: github-runner
+    group: github-runner
+    remote_src: yes
+
+- name: Install libicu
+  ansible.builtin.dnf:
+    name: libicu
+    state: installed
+
+- name: Install gcc and python3-devel
+  ansible.builtin.package:
+    name:
+      - gcc
+      - python3-devel
+    state: present
+
+- name: Configure runner
+  ansible.builtin.shell: ./config.sh --url https://github.com/{{ github_org_name }} --token "{{ secrets.runner_token }}" --runnergroup Default --name github-runner --labels self-hosted --work _work --replace
+  args:
+    chdir: /github-runner
+  become_user: github-runner
+  ignore_errors: true
+
+- name: Copy Service
+  ansible.builtin.template:
+    src: github-runner.service
+    dest: /etc/systemd/system/github-runner.service
+
+- name: Start Runner Service
+  ansible.builtin.systemd_service:
+    name: github-runner
+    state: restarted
+    enabled: yes
+
+- name: Download Terraform Repo
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+
+- name: Install Terraform
+  ansible.builtin.dnf:
+    name: terraform
+    state: installed
+
+- name: Get latest stable kubectl version
+  ansible.builtin.uri:
+    url: https://dl.k8s.io/release/stable.txt
+    return_content: true
+  register: stable_version
+
+- name: Download kubectl
+  ansible.builtin.get_url:
+    url: "https://dl.k8s.io/release/{{ stable_version.content | trim }}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: '0755'
+
+- name: Verify installation
+  ansible.builtin.command: kubectl version --client
+  register: kubectl_version
+  changed_when: false
+
+- debug:
+  var: kubectl_version.stdout
+
+- name: Install App Packages
+  ansible.builtin.dnf:
+    name:
+      - nodejs
+      - maven
+      - npm
+
+- name: Install Docker
+  ansible.builtin.dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+
+- name: Enable and start Docker service
+  ansible.builtin.systemd_service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Verify Docker installation
+  ansible.builtin.command: docker info
+  register: docker_info
+  changed_when: false
+
+- name: Add ec2-user to docker group
+  ansible.builtin.user:
+    name: ec2-user
+    groups: docker
+    append: yes
+
+- name: Add github-runner to docker group
+  ansible.builtin.user:
+    name: github-runner
+    groups: docker
+    append: yes
+
+- name: Install Helm
+  ansible.builtin.shell: curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4 | bash
+
+- name: Verify Helm binary
+  ansible.builtin.command: type helm
+  register: helm_type
+  changed_when: false
+
+- name: Verify Helm installation
+  ansible.builtin.command: helm --version
+  register: helm_version
+  changed_when: false
+
+- debug:
+    var: helm_version.stdout
