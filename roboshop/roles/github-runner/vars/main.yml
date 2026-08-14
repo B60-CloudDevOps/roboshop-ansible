@@ -2,3 +2,4 @@ runner_version: 2.335.1
 github_org_name: B60-CloudDevOps
 vault_url: "http://vault-tools.robotshop.fun/:8200"
 secrets: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-tools/data/github-actions token={{ token }} url=http://vault-tools.robotshop.fun:8200 validate_certs=false') }}"
+runner_image_version: v1.0.0

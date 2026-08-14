@@ -33,4 +33,21 @@
     groups: docker
     append: yes
 
-
+- name: Runner container
+  community.docker.docker_container:
+    name: "{{ item }}"
+    image: "public.ecr.aws/w2x3d9u7/runner:{{ runner_image_version }}"
+    state: started
+    recreate: true
+    pull: always
+    restart_policy: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      NAME: "{{ item }}"
+      TOKEN: "{{ secrets.runner_token }}"
+      ORG: "https://github.com/B60-CloudDevOps"
+  loop:
+    - runner-c1
+    - runner-c2
+    - runner-c3
