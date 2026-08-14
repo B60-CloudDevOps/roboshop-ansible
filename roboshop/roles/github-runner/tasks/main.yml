@@ -33,6 +33,13 @@
     groups: docker
     append: yes
 
+- name: Install Docker SDK for Python
+  ansible.builtin.pip:
+    name:
+      - docker
+      - requests
+    executable: pip3.11
+
 - name: Runner container
   community.docker.docker_container:
     name: "{{ item }}"
