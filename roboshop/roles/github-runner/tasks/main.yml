@@ -55,6 +55,6 @@
       TOKEN: "{{ secrets.runner_token }}"
       ORG: "https://github.com/B60-CloudDevOps"
   loop:
-    - runner-c1
-    - runner-c2
-    - runner-c3
+    - runner-c01
+    - runner-c02
+    - runner-c03
